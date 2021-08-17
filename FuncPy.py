@@ -21,3 +21,10 @@ def reverse(lst: List) -> List:
         return reverse(tail(lst)) + head(lst)
     else:
         return lst
+
+def take(n: int, lst: List) -> List:
+    if n > len(lst):
+        return lst
+    if n == 1:
+        return head(lst)
+    return head(lst) + take(n-1, tail(lst))
