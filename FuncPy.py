@@ -1,5 +1,5 @@
 from functools import wraps
-from typing import List, Set, Tuple
+from typing import Generator, List, Tuple
 
 def _type_guard(callback):
     @wraps(callback)
@@ -41,3 +41,9 @@ def take(n: int, lst: List) -> List:
     if n == 1:
         return head(lst)
     return head(lst) + take(n-1, tail(lst))
+
+def generator(fn, start = 0, end = None) -> Generator:
+    if end != None and start > end:
+        return
+    yield fn(start)
+    yield from generator(fn, fn(start))
