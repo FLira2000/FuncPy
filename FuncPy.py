@@ -43,7 +43,7 @@ def take(n: int, lst: List) -> List:
     return head(lst) + take(n-1, tail(lst))
 
 def generator(fn, start = 0, end = None) -> Generator:
-    if end != None and start > end:
-        return
+    if end != None and fn(start) > end:
+        return fn(start)
     yield fn(start)
-    yield from generator(fn, fn(start))
+    yield from generator(fn, fn(start), end)
